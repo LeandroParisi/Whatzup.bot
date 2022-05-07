@@ -1,0 +1,70 @@
+{
+  "name": "Whatzup.bot",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "npm run pre-build:dev && npm run clean-up:dev && electron build/index.js",
+    "dev": "npx ts-node src/index.ts",
+    "release": "npm run pre-build:release && electron-builder --win --publish always",
+    "pack": "npm run pre-build:release && electron-builder build --win",
+    "pack:linux": "npm run pre-build:release && electron-builder build --linux",
+    "pre-build:release": "npm run clean-up:release && npm run compile",
+    "pre-build:dev": "npm run compile",
+    "compile": "rm -rf build && tsc && copyfiles -f src/index.html build && copyfiles -f package.json build && copyfiles -f yarn.lock build && cp -R ./src/Electron/WebPage build/WebPage",
+    "test": "jest",
+    "clean-up:release": "rm -rf ./tokens && rm -rf databases && rm -rf dist",
+    "clean-up:dev": "rm -rf ./logs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LeandroParisi/Whatzup.bot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LeandroParisi/Whatzup.bot/issues"
+  },
+  "homepage": "https://github.com/LeandroParisi/Whatzup.bot#readme",
+  "dependencies": {
+    "axios": "^0.24.0",
+    "cep-promise": "^4.1.2",
+    "copyfiles": "^2.4.1",
+    "dotenv": "^10.0.0",
+    "electron-squirrel-startup": "^1.0.0",
+    "electron-updater": "^4.6.5",
+    "moment": "^2.29.1",
+    "nedb": "^1.8.0",
+    "nedb-promises": "^5.0.2",
+    "node-fetch": "^3.1.0",
+    "reflect-metadata": "^0.1.13",
+    "sharp": "^0.30.3",
+    "typedi": "^0.10.0",
+    "uuid": "^8.3.2",
+    "venom-bot": "^4.0.5",
+    "winston": "^3.7.2"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.3.1",
+    "@types/electron": "^1.6.10",
+    "@types/jest": "^27.5.0",
+    "@types/uuid": "^8.3.4",
+    "@typescript-eslint/eslint-plugin": "^5.10.2",
+    "@typescript-eslint/parser": "^5.10.2",
+    "electron": "^16.1.0",
+    "electron-builder": "^22.14.13",
+    "eslint": "^7.32.0",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-typescript": "^3.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-unused-imports": "^2.0.0",
+    "jest": "^28.1.0",
+    "jest-theories": "^1.5.1",
+    "nodemon": "^2.0.15",
+    "ts-jest": "^28.0.1",
+    "ts-node": "^10.4.0",
+    "typescript": "^4.5.5"
+  }
+}

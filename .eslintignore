@@ -1,0 +1,4 @@
+{
+    "ignorePatterns": ["**/*.js", "**/vendor/*.js"],
+  
+}

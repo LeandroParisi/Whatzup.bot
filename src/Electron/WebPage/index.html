@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<head>
+  <title>WhatsappBot</title>
+  <link rel="stylesheet" href="./CSS/Boilerplate.css">
+  <link rel="stylesheet" href="./CSS/Logs.css">
+  <link rel="stylesheet" href="./CSS/LoginContainer.css">
+  <link rel="stylesheet" href="./CSS/Spinner.css">
+
+</head>
+<body>
+  <h1>TaOn - WhatsappBot</h1>
+  <p id="version"></p>
+
+  <div id="login-container" class="">
+    <input placeholder="email" id="email" type="text" />
+    <input placeholder="senha" id="password" type="password" />
+    <button id="send" onclick="sendInput()">
+      Login
+    </button>
+  </div>
+
+  <div id="logs-container">
+    <p id="logs"></p>
+  </div>
+
+  <div id="notification" class="hidden">
+    <p id="message"></p>
+    <div class="spinner"></div>
+    <button id="restart-button" onClick="restartApp()" class="hidden">
+      Restart
+    </button>
+  </div>
+
+  <script>
+    const { ipcRenderer } = require('electron');
+    const version = document.getElementById('version');
+
+    const notification = document.getElementById('notification');
+    const message = document.getElementById('message');
+    const restartButton = document.getElementById('restart-button');
+    const logs = document.getElementById('logs');
+    const loginContainer = document.getElementById('login-container');
+    const loginButton = document.getElementById('send');
+    const spinner = document.querySelector('.spinner')
+    
+    console.log(spinner)
+    ipcRenderer.send('app_version');
+
+    ipcRenderer.on('app_version', (event, arg) => {
+      ipcRenderer.removeAllListeners('app_version');
+      version.innerText = 'Version ' + arg.version;
+    });
+
+    ipcRenderer.on('update_available', () => {
+      ipcRenderer.removeAllListeners('update_available');
+      message.innerText = 'A new update is available. Downloading now...';
+      notification.classList.remove('hidden');
+    });
+
+    ipcRenderer.on('update_downloaded', () => {
+      ipcRenderer.removeAllListeners('update_downloaded');
+      message.innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+      spinner.classList.add('hidden')
+      restartButton.classList.remove('hidden');
+      notification.classList.remove('hidden');
+    });
+
+    ipcRenderer.on('request_login', (_event, message) => {
+      loginButton.disabled = false
+      errorMessage()
+      logs.innerText = message
+      loginContainer.classList.remove('hidden');
+    })
+
+    ipcRenderer.on('logged_in', (_event, message) => {
+      loginButton.disabled = true
+      successMessage()
+      logs.innerText = message || "Você está conectado!"
+      loginContainer.classList.add('hidden');
+    })
+
+    function closeNotification() {
+      notification.classList.add('hidden');
+    }
+    
+    function restartApp() {
+      ipcRenderer.send('restart_app');
+    }
+
+    function sendInput() {
+      successMessage()
+      logs.innerText = "Tentando te conectar, favor aguarde..."
+
+      loginButton.disabled = true
+      const loginInfo = {
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      }
+      ipcRenderer.send('receive_input', loginInfo)
+    }
+
+    function successMessage() {
+      logs.classList.add("success")
+      logs.classList.remove("error")
+    }
+
+    function errorMessage() {
+      logs.classList.add("error")
+      logs.classList.remove("success")
+    }
+  </script>
+</body>
