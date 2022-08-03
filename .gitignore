@@ -8,6 +8,7 @@ lerna-debug.log*
 .vscode
 .vscode/
 coverage/
+coverage
 
 # Custom ignores
 tokens/

@@ -1,13 +1,12 @@
 import staticImplements from "../../Shared/Anotations/staticImplements"
 import { IDictionary } from "../../Shared/Utils/SystemUtils"
-import { IStepInteraction } from "../../Domain/Steps/Interfaces/IStep"
 import IInstaller from "../../Shared/Interfaces/IInstaller"
-import SimpleStep from "./SimpleStep"
 import StepTypes from "../../Domain/Steps/Enums/StepTypes"
-import OptionsStep from "./OptionsStep"
+import OptionsStep from "./StepDefinition/OptionsStep"
 import Container, { Service } from "typedi"
 import StepsRepository from "../../Services/SessionManagement/Repositories/StepsRepository"
 import GenericError from "../../Domain/Abstractions/Errors/GenericError"
+import { IStepInteraction } from "../../Domain/Steps/Interfaces/StepDefinition/IStepInteraction"
 
 @staticImplements<IInstaller>()
 @Service()
@@ -31,7 +30,6 @@ export default class StepFactory {
   }
 
   public static InstallServices(): void {
-    StepFactory.RegisterStep(StepTypes.Simple, SimpleStep)
     StepFactory.RegisterStep(StepTypes.Options, OptionsStep)
   }
 }

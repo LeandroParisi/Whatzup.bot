@@ -13,7 +13,7 @@ export default class CustomerRepository {
   }
 
   async GetClientByNumber(whatsappId: string) : Promise<Customer> {
-    const document = await this.customerDb.findOne({ "whatsappId": whatsappId })
+    const document = await this.customerDb.findOne({ whatsappId })
     return document as unknown as Customer
   }
 
@@ -31,7 +31,7 @@ export default class CustomerRepository {
     const clients = await this.customerDb.find(query)
     return clients as Array<Customer>
   }
-
+  
   async DeleteClient(query : Object) : Promise<any> {
     const affectedRows = await this.customerDb.remove(query, { multi: true })
     return affectedRows
@@ -40,6 +40,10 @@ export default class CustomerRepository {
   async GetCustomerById(customerId : string) : Promise<Customer> {
     const client = await this.customerDb.findOne({ _id : customerId })
     return client as Customer 
+  }
+
+  async CleanUp() : Promise<void> {
+    await this.customerDb.remove({}, { multi: true })
   }
 }
 

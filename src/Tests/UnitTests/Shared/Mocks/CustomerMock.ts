@@ -3,6 +3,6 @@ import { faker } from '@faker-js/faker'
 
 export default class CustomerMock {
   static GenerateCustomer() : Customer {
-    return new Customer(faker.name.findName())
+    return new Customer(faker.name.findName(), faker.datatype.string(13))
   }
 }

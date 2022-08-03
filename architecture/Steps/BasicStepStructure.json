@@ -1,0 +1,20 @@
+{
+  "id": "number",
+  "name": "string",
+  "type": "options",
+  "introMessage": "string[]",
+  "options?": [
+    {
+      "nextStep": "number",
+      "selectionKey": "number",
+      "name": "string",
+      "outboundMessages": "string[]",
+      "actions": [
+        {
+          // TODO
+        }
+      ]
+    }
+  ]
+
+}

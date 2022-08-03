@@ -1,7 +1,8 @@
 
 export default interface IStepOption {
   nextStep : number
-  key : number
-  value : string
+  selectionKey : number
+  name : string
   outboundMessages : string[]
+  // actions: 
 }

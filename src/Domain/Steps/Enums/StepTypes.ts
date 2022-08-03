@@ -1,5 +1,4 @@
 enum StepTypes {
-  Simple = 'simple',
   Options = 'options'
 }
 

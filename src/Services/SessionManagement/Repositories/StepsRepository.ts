@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/ban-types */
 import Datastore = require("nedb-promises");
 import { Service } from "typedi"
-import { IStep } from "../../../Domain/Steps/Interfaces/IStep"
+import { IStep } from "../../../Domain/Steps/Interfaces/StepInfo/IStepInfo"
 import SessionDataDbs from '../config'
 
 @Service()

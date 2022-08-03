@@ -1,5 +1,5 @@
 import StepTypes from "../../../../Domain/Steps/Enums/StepTypes"
-import IOptionsStep from "../../../../Domain/Steps/Interfaces/OptionsStep/IOptionsStep"
+import IOptionsStep from "../../../../Domain/Steps/Interfaces/StepInfo/OptionsStep/IOptionsStepInfo"
 import ISimpleStep from "../../../../Domain/Steps/Interfaces/SimpleStep/ISimpleStep"
 
 const firstStepIntro = [ 

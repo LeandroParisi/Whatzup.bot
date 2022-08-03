@@ -1,5 +1,4 @@
-import Customer from "../../Entities/Customer"
-import StepTypes from "../Enums/StepTypes"
+import Customer from "../../../Entities/Customer"
 
 export interface IInteractionInput {
   customer : Customer,
@@ -9,13 +8,7 @@ export interface IInteractionInput {
 export interface IInteractionOutput {
   nextStep : number
   outboundMessages : string[]
-}
-
-export interface IStep {
-  id : number
-  name : string
-  type : StepTypes
-  introMessage : string[]
+  // actions : ??
 }
 
 export interface IStepInteraction {

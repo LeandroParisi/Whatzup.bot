@@ -1,4 +1,4 @@
-import IOptionsStep from "../../../../../Domain/Steps/Interfaces/OptionsStep/IOptionsStep"
+import IOptionsStep from "../../../../../Domain/Steps/Interfaces/StepInfo/OptionsStep/IOptionsStepInfo"
 import ISimpleStep from "../../../../../Domain/Steps/Interfaces/SimpleStep/ISimpleStep"
 import StepsRepository from "../../../../../Services/SessionManagement/Repositories/StepsRepository"
 import staticImplements from "../../../../../Shared/Anotations/staticImplements"

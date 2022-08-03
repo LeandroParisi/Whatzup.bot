@@ -1,28 +1,35 @@
 import { Service } from "typedi"
+import venom, { Whatsapp } from 'venom-bot'
+import CustomerRepository from "../Services/SessionManagement/Repositories/CustomerRepository"
+import StepsRepository from "../Services/SessionManagement/Repositories/StepsRepository"
 import BotCore from "./BotCore"
 import Installer from "./Installer"
 
 @Service()
 export default class BotStartup {
   constructor(
+    private CustomerRepository : CustomerRepository,
+    private StepsRepository : StepsRepository,
+    private readonly BotCore : BotCore,
+    private VenomBot : Whatsapp
   ) {}
   
   public InstallServices() {
     Installer.InstallServices()
   }
   
-  public async Startup(bot : BotCore) {
-    // const startupDate = DaysUtils.GetDateFromTimestamp(Date.now() / 1000)
-
+  public async Startup() {
     await this.CleanUp()
-    // await this.SessionHandler.ValidateCurrentSessions(startupDate)
-    // await this.UserDataHandler.SetStartupTime(startupDate)
 
-    // bot.SetStartupDate(startupDate)
+    await this.CreateBot()
+
+    await this.LoadUserInfo()
+
+    this.BotCore.Start()
   }
 
-  public async LoadUserInfo(venomBot : any, bot : BotCore) {
-    // const botInfo = await venomBot.getHostDevice() 
+  public async LoadUserInfo() {
+    const botInfo = await this.VenomBot.getHostDevice() 
     // const { id: { user : deviceNumber } } = botInfo
     // console.log({botInfo})
     
@@ -32,7 +39,20 @@ export default class BotStartup {
     // bot.SetMemoryData(memoryData)
   }
 
-  // private async CleanUp() {
+  private async CleanUp() {
+    await this.CustomerRepository.CleanUp()
+    await this.StepsRepository.CleanUp()
+  }
 
-  // }
+  private async CreateBot() : Promise<void> {
+    const bot = await venom.create({
+      session: 'whatsapp_bot', // name of session
+      multidevice: true , // for version not multidevice use false.(default: true)
+      headless: false, // Headless chrome
+      useChrome: true,
+    })
+
+    this.VenomBot = bot
+    this.BotCore.SetBot(bot)
+  }
 }

@@ -1,5 +1,5 @@
 import { Service } from "typedi"
-import AugmentedMessage from "../../../../TsTypes/PackagesAugmentation/AugmentedMessage"
+import AugmentedMessage from "../../../../tsTypes/PackagesAugmentation/VenomBot/AugmentedMessage"
 import Customer from "../../../Domain/Entities/Customer"
 import CustomerRepository from '../Repositories/CustomerRepository'
 
@@ -15,7 +15,9 @@ export default class SessionHandler {
 
     if (foundCustomer) return foundCustomer
 
-    const customer = new Customer(message.sender.shortName || message.sender.verifiedName)
+    const customerName = message.sender.shortName || message.sender.verifiedName
+    
+    const customer = new Customer(customerName, message.from)
 
     await this.CustomerRepository.InsertCustomer(customer)
 

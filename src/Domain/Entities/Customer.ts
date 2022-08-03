@@ -1,3 +1,4 @@
+/* istanbul ignore file */
 
 export default class Customer {
   public _id : string
@@ -9,8 +10,10 @@ export default class Customer {
   /**
    *
    */
-  constructor(name : string) {
+  constructor(name : string, whatsappId : string) {
     this.currentStep = 1
+    this.isBotDisabled = false
     this.name = name
+    this.whatsappId = whatsappId
   }
 }

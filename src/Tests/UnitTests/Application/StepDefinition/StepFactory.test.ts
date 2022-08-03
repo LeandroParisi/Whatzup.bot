@@ -1,6 +1,5 @@
-import OptionsStep from "../../../../Application/StepDefinition/OptionsStep"
-import SimpleStep from "../../../../Application/StepDefinition/SimpleStep"
-import StepFactory from "../../../../Application/StepDefinition/StepFactory"
+import OptionsStep from "../../../../Application/Steps/StepDefinition/OptionsStep"
+import StepFactory from "../../../../Application/Steps/StepFactory"
 import StepTypes from "../../../../Domain/Steps/Enums/StepTypes"
 import defaultSteps from "../../Shared/Mocks/DefaultSteps"
 import StepsDbSetup from "../../Shared/Setups/DbSetups/StepsDbSetup"
@@ -25,9 +24,8 @@ describe("Step Factory Tests", () => {
         case StepTypes.Options:
           expect(stepName).toBe(OptionsStep.name)
           break
-        case StepTypes.Simple:
-          expect(stepName).toBe(SimpleStep.name)
-          break
+        default:
+          throw new Error("Unit tests, invalid step type")
       }
     }
   })

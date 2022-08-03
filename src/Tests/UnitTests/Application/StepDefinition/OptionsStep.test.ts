@@ -1,6 +1,6 @@
-import OptionsStep from "../../../../Application/StepDefinition/OptionsStep"
+import OptionsStep from "../../../../Application/Steps/StepDefinition/OptionsStep"
 import Customer from "../../../../Domain/Entities/Customer"
-import IOptionsStep from "../../../../Domain/Steps/Interfaces/OptionsStep/IOptionsStep"
+import IOptionsStep from "../../../../Domain/Steps/Interfaces/StepInfo/OptionsStep/IOptionsStepInfo"
 import CustomerMock from "../../Shared/Mocks/CustomerMock"
 import StepMock from "../../Shared/Mocks/StepMock"
 
@@ -23,7 +23,7 @@ describe("Options Step tests", () => {
     const { 
       nextStep, 
       outboundMessages 
-    } = optionsStep.Interact({ userMessage: `   ${selectedOption.key} `, customer: mockedCustomer })
+    } = optionsStep.Interact({ userMessage: `   ${selectedOption.selectionKey} `, customer: mockedCustomer })
 
     // Assert
     expect(nextStep).toBe(selectedOption.nextStep)
@@ -32,7 +32,7 @@ describe("Options Step tests", () => {
 
   it("Should send user to same step if invalid response", () => {
     // Arrange
-    const avaiableOptions = new Set(mockedStep.options.map(x => x.key))
+    const avaiableOptions = new Set(mockedStep.options.map(x => x.selectionKey))
     const invalidOption = Array
       .from({ length:50 }, (_v, k)=> k + 1)
       .filter(x => !avaiableOptions.has(x))[Math.floor(Math.random() * mockedStep.options.length)]
