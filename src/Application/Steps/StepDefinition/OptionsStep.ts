@@ -1,11 +1,12 @@
 
-import GenericParser from "../../../Shared/Parsers/GenericParser"
-import IValidatedStep from "../../../Domain/Steps/Interfaces/StepDefinition/IValidatedStep"
-import { 
+import {
   IInteractionInput,
   IInteractionOutput,
-  IStepInteraction } from "../../../Domain/Steps/Interfaces/StepDefinition/IStepInteraction"
-import IOptionsStepInfo from "../../../Domain/Steps/Interfaces/StepInfo/OptionsStep/IOptionsStepInfo"
+  IStepInteraction
+} from "../../../Domain/Steps/Interfaces/IStepInteraction"
+import IValidatedStep from "../../../Domain/Steps/Interfaces/IValidatedStep"
+import IOptionsStepInfo from "../../../Domain/Steps/ValueObjects/OptionsStep/IOptionsStepInfo"
+import GenericParser from "../../../Shared/Parsers/GenericParser"
 
 export default class OptionsStep implements IStepInteraction, IValidatedStep {
   stepInfo : IOptionsStepInfo

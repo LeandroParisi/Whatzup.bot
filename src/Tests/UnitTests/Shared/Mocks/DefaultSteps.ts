@@ -1,6 +1,6 @@
 import StepTypes from "../../../../Domain/Steps/Enums/StepTypes"
-import IOptionsStep from "../../../../Domain/Steps/Interfaces/StepInfo/OptionsStep/IOptionsStepInfo"
-import ISimpleStep from "../../../../Domain/Steps/Interfaces/SimpleStep/ISimpleStep"
+import { IStep } from "../../../../Domain/Steps/ValueObjects/IStepInfo"
+import IOptionsStep from "../../../../Domain/Steps/ValueObjects/OptionsStep/IOptionsStepInfo"
 
 const firstStepIntro = [ 
   'Hello,\nMy name is Walle, and I will be helping you during your experience.', 
@@ -22,16 +22,16 @@ const thirdStep : IOptionsStep = {
   introMessage: thirdStepIntro,
   options: [
     {
-      key: 1,
+      selectionKey: 1,
       nextStep: 1,
       outboundMessages:  firstStepIntro,
-      value: "Yes"
+      name: "Yes"
     },
     {
-      key: 2,
+      selectionKey: 2,
       nextStep: 1,
       outboundMessages: [ "Ok, if you need something else just message me." ],
-      value: "No"
+      name: "No"
     }
   ]
 
@@ -44,8 +44,8 @@ const secondStep : IOptionsStep = {
   introMessage: secondStepIntro,
   options: [
     {
-      key: 1,
-      value: "Shirt",
+      selectionKey: 1,
+      name: "Shirt",
       nextStep: 3,
       outboundMessages: [
         "Color: Blue | Size: M | Price: $10",
@@ -53,8 +53,8 @@ const secondStep : IOptionsStep = {
       ]
     },
     {
-      key: 2,
-      value: "Dress",
+      selectionKey: 2,
+      name: "Dress",
       nextStep: 3,
       outboundMessages: [
         "Color: Gray | Size: M | Price: $20",
@@ -71,14 +71,14 @@ const firstStep : IOptionsStep = {
   introMessage: firstStepIntro,
   options: [
     {
-      key: 1,
-      value: "See products",
+      selectionKey: 1,
+      name: "See products",
       nextStep: 2,
       outboundMessages: secondStep.introMessage
     },
     {
-      key: 1,
-      value: "No, thank you",
+      selectionKey: 1,
+      name: "No, thank you",
       nextStep: 3,
       outboundMessages: firstStepIntro 
     }
@@ -86,7 +86,7 @@ const firstStep : IOptionsStep = {
   type: StepTypes.Options
 }
 
-const defaultSteps : Array<ISimpleStep | IOptionsStep> = [
+const defaultSteps : Array<IStep | IOptionsStep> = [
   firstStep,
   secondStep,
   thirdStep

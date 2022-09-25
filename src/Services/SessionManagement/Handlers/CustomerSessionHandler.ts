@@ -4,7 +4,7 @@ import Customer from "../../../Domain/Entities/Customer"
 import CustomerRepository from '../Repositories/CustomerRepository'
 
 @Service()
-export default class SessionHandler {
+export default class CustomerSessionHandler {
   constructor(
     private readonly CustomerRepository : CustomerRepository,
   ) {

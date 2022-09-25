@@ -1,11 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import { Service } from 'typedi'
-import { Message } from 'venom-bot'
-import { Whatsapp } from 'venom-bot'
+import { Message, Whatsapp } from 'venom-bot'
 import AugmentedMessage from '../../tsTypes/PackagesAugmentation/VenomBot/AugmentedMessage'
 import Customer from '../Domain/Entities/Customer'
-import { IInteractionOutput } from '../Domain/Steps/Interfaces/StepDefinition/IStepInteraction'
-import SessionHandler from '../Services/SessionManagement/Handlers/SessionHandler'
+import { IInteractionOutput } from '../Domain/Steps/Interfaces/IStepInteraction'
+import SessionHandler from '../Services/SessionManagement/Handlers/CustomerSessionHandler'
 import StepFactory from './Steps/StepFactory'
 
 require('dotenv').config()

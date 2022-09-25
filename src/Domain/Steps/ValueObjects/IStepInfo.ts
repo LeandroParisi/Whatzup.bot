@@ -1,4 +1,4 @@
-import StepTypes from "../../Enums/StepTypes"
+import StepTypes from "../Enums/StepTypes"
 
 export interface IStep {
   id : number

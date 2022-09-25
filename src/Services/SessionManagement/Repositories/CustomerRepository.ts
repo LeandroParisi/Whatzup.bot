@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/ban-types */
-import Datastore = require("nedb-promises");
+import Datastore from "nedb-promises"
 import { Service } from "typedi"
 import Customer from "../../../Domain/Entities/Customer"
 import SessionDataDbs from '../config'

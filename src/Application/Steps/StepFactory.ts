@@ -1,12 +1,12 @@
-import staticImplements from "../../Shared/Anotations/staticImplements"
-import { IDictionary } from "../../Shared/Utils/SystemUtils"
-import IInstaller from "../../Shared/Interfaces/IInstaller"
-import StepTypes from "../../Domain/Steps/Enums/StepTypes"
-import OptionsStep from "./StepDefinition/OptionsStep"
 import Container, { Service } from "typedi"
+import GenericError from "../../Domain/Errors/GenericError"
+import StepTypes from "../../Domain/Steps/Enums/StepTypes"
+import { IStepInteraction } from "../../Domain/Steps/Interfaces/IStepInteraction"
 import StepsRepository from "../../Services/SessionManagement/Repositories/StepsRepository"
-import GenericError from "../../Domain/Abstractions/Errors/GenericError"
-import { IStepInteraction } from "../../Domain/Steps/Interfaces/StepDefinition/IStepInteraction"
+import staticImplements from "../../Shared/Anotations/staticImplements"
+import IInstaller from "../../Shared/Interfaces/IInstaller"
+import { IDictionary } from "../../Shared/Utils/SystemUtils"
+import OptionsStep from "./StepDefinition/OptionsStep"
 
 @staticImplements<IInstaller>()
 @Service()

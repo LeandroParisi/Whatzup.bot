@@ -1,5 +1,5 @@
 import { Service } from "typedi"
-import venom, { Whatsapp } from 'venom-bot'
+import * as venom from 'venom-bot'
 import CustomerRepository from "../Services/SessionManagement/Repositories/CustomerRepository"
 import StepsRepository from "../Services/SessionManagement/Repositories/StepsRepository"
 import BotCore from "./BotCore"
@@ -7,11 +7,11 @@ import Installer from "./Installer"
 
 @Service()
 export default class BotStartup {
+  private VenomBot : venom.Whatsapp
   constructor(
     private CustomerRepository : CustomerRepository,
     private StepsRepository : StepsRepository,
     private readonly BotCore : BotCore,
-    private VenomBot : Whatsapp
   ) {}
   
   public InstallServices() {
@@ -29,7 +29,9 @@ export default class BotStartup {
   }
 
   public async LoadUserInfo() {
-    const botInfo = await this.VenomBot.getHostDevice() 
+    const botInfo = await this.VenomBot.getHostDevice()
+    console.log({ botInfo }) 
+    throw new Error("TESTE")
     // const { id: { user : deviceNumber } } = botInfo
     // console.log({botInfo})
     

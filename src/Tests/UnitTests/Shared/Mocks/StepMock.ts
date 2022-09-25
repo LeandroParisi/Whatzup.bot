@@ -1,7 +1,7 @@
-import IOptionsStep from "../../../../Domain/Steps/Interfaces/StepInfo/OptionsStep/IOptionsStepInfo"
-import staticImplements from "../../../../Shared/Anotations/staticImplements"
 import { faker } from '@faker-js/faker'
 import StepTypes from "../../../../Domain/Steps/Enums/StepTypes"
+import IOptionsStep from "../../../../Domain/Steps/ValueObjects/OptionsStep/IOptionsStepInfo"
+import staticImplements from "../../../../Shared/Anotations/staticImplements"
 
 @staticImplements()
 export default class StepMock {

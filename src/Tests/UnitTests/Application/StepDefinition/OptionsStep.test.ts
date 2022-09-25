@@ -1,6 +1,6 @@
 import OptionsStep from "../../../../Application/Steps/StepDefinition/OptionsStep"
 import Customer from "../../../../Domain/Entities/Customer"
-import IOptionsStep from "../../../../Domain/Steps/Interfaces/StepInfo/OptionsStep/IOptionsStepInfo"
+import IOptionsStep from "../../../../Domain/Steps/ValueObjects/OptionsStep/IOptionsStepInfo"
 import CustomerMock from "../../Shared/Mocks/CustomerMock"
 import StepMock from "../../Shared/Mocks/StepMock"
 

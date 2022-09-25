@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "npm run pre-build:dev && npm run clean-up:dev && electron build/index.js",
-    "dev": "npx ts-node src/index.ts",
+    "dev": "RUN_WITHOUT_ELECTRON=true npx ts-node src/index.ts",
     "release": "npm run pre-build:release && electron-builder --win --publish always",
     "pack": "npm run pre-build:release && electron-builder build --win",
     "pack:linux": "npm run pre-build:release && electron-builder build --linux",
     "pre-build:release": "npm run clean-up:release && npm run compile",
     "pre-build:dev": "npm run compile",
-    "compile": "rm -rf build && tsc && copyfiles -f src/index.html build && copyfiles -f package.json build && copyfiles -f yarn.lock build && cp -R ./src/Electron/WebPage build/WebPage",
+    "compile": "rm -rf build && npm run lint && copyfiles -f src/index.html build && copyfiles -f package.json build && copyfiles -f yarn.lock build && cp -R ./src/Electron/WebPage build/WebPage",
+    "lint": "tsc",
     "test": "jest",
     "clean-up:release": "rm -rf ./tokens && rm -rf databases && rm -rf dist",
     "clean-up:dev": "rm -rf ./logs"

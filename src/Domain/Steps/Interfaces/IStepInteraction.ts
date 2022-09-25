@@ -1,4 +1,4 @@
-import Customer from "../../../Entities/Customer"
+import Customer from "../../Entities/Customer"
 
 export interface IInteractionInput {
   customer : Customer,
