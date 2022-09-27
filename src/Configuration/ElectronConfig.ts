@@ -1,4 +1,4 @@
-import staticImplements from "./Shared/Anotations/staticImplements"
+import staticImplements from "../Shared/Anotations/staticImplements"
 
 @staticImplements()
 export default class ElectronConfig {

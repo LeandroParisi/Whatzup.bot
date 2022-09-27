@@ -31,8 +31,7 @@ export default class BotStartup {
   public async LoadUserInfo() {
     const botInfo = await this.VenomBot.getHostDevice()
     console.log({ botInfo }) 
-    throw new Error("TESTE")
-    // const { id: { user : deviceNumber } } = botInfo
+    const { id: { user : deviceNumber } } = botInfo
     // console.log({botInfo})
     
     // const { branchData, memoryData } = await this.UserDataHandler.LoadInitialData(deviceNumber)

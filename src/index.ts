@@ -2,7 +2,8 @@
 import 'reflect-metadata'
 import Container, { Service } from 'typedi'
 import BotStartup from './Application/BotStartup'
-import Config from './config'
+import Config from './Configuration/AppConfiguration'
+import { LocalStartup } from './Configuration/LocalStartup'
 import ElectronStartup from './Electron/EletronStartup'
 import ILoginSubscriber from './Electron/Interfaces/EventsSubscribers/ILoginSubscriber'
 
@@ -36,6 +37,8 @@ export default class Main implements ILoginSubscriber {
 
   private async StartWithoutElectron() {
     console.log("Starting bot without electron")
+    const localStartup = Container.get(LocalStartup)
+    await localStartup.TryLogin()
     await this.BotStartup.Startup()
   }
 

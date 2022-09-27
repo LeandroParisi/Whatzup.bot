@@ -1,5 +1,5 @@
 import Datastore from "nedb-promises"
-import Config from "../../config"
+import Config from "../../Configuration/AppConfiguration"
 import staticImplements from "../../Shared/Anotations/staticImplements"
 
 @staticImplements()

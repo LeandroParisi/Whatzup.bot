@@ -45,7 +45,7 @@ export const WhatzupApiEndpoint : Record<WhatzupApiRoutes, Record<string, Endpoi
       method: "POST"
     }
   }
-}
+} as const
 
 export interface EndpointDefinition {
   endpoint: string

@@ -9,7 +9,7 @@ export default class UserSessionRepository {
     this.db = SessionDataDbs.userSessionDb
   }
 
-  // public async Login(loginInfo : ILoginInfo) : boolean {
-    
-  // }
+  public async SaveToken(token : string) {
+    await this.db.insert({ token })
+  }
 }

@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import ElectronConfig from "./electronConfig"
-import staticImplements from "./Shared/Anotations/staticImplements"
+import staticImplements from "../Shared/Anotations/staticImplements"
+import ElectronConfig from "./ElectronConfig"
 
 require('dotenv').config()
 
@@ -11,7 +11,7 @@ export enum Envs {
 }
 
 @staticImplements()
-export default class Config {
+export default class AppConfiguration {
   static backendUrl = process.env.BACKEND_URL || ElectronConfig.backendUrl
   static dbsPath = "./databases"
   static runWithoutElectron = process.env.RUN_WITHOUT_ELECTRON === 'true'

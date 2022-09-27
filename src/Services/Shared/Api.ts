@@ -39,7 +39,7 @@ export default abstract class Api {
     return response.data as TResponse
   }
 
-  async Request<TResponse>(payload : IApi) : Promise<TResponse> {
+  protected async Request<TResponse>(payload : IApi) : Promise<TResponse> {
     try {
       return await this.MakeRequest<TResponse>(payload)
     } catch (error) {

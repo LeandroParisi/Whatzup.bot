@@ -1,14 +1,11 @@
 import { Service } from "typedi"
-import { ILoginInfo } from "../../../Domain/DTOs/ILoginInfo"
+import WhatzupBackendService from "../../WhatzupBackend/Service/WhatzupBackendService"
 import UserSessionRepository from '../Repositories/UserSessionRepository'
 
 @Service()
 export default class UserSessionHandler {
   constructor(
     private readonly UserSessionRepository : UserSessionRepository,
+    private readonly WhatzupBackendService : WhatzupBackendService
   ) {}
-
-  public async TryLogin(loginInfo : ILoginInfo) {
-    
-  }
 }
